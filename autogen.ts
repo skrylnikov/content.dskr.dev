@@ -16,11 +16,9 @@ for await(const {path} of walk('./blog', { includeDirs: false })){
   if(parsedPath.length !== 3){
     continue;
   }
-  console.log(path);
   
   const markdown = decoder.decode(await Deno.readFile(path));
   const title = markdown.split('\n')[0].replace('#', '').trim();
-  console.log(title);
   
   itemlist.push({
     title,
@@ -30,13 +28,13 @@ for await(const {path} of walk('./blog', { includeDirs: false })){
 
 
 const blogReadme = '# Blog\n\n' 
-  + itemlist.map(({title, path}) => `- [${title}](${path.replace('blog', '')})`).join('\n')
+  + itemlist.map(({title, path}) => `- [${title}](.${path.replace('blog', '')})`).join('\n')
   + '\n';
 
 await Deno.writeFile('./blog/README.md', encoder.encode( blogReadme));
 
 const mainReadme = '# [Blog](./blog/README.md)\n\n' 
-  + itemlist.map(({title, path}) => `- [${title}](.${path})`).join('\n')
+  + itemlist.map(({title, path}) => `- [${title}](${path})`).join('\n')
   + '\n';
 
 await Deno.writeFile('./README.md', encoder.encode(mainReadme));
