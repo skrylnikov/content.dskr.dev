@@ -1,5 +1,4 @@
 import { walk } from "https://deno.land/std@0.76.0/fs/mod.ts";
-import { Marked } from "https://deno.land/x/markdown@v2.0.0/mod.ts";
 
 const decoder = new TextDecoder("utf-8");
 const encoder = new TextEncoder();
@@ -26,16 +25,12 @@ for await(const {path} of walk('./blog', { includeDirs: false })){
   });
 }
 
-
-const blogReadme = '# Blog\n\n' 
-  + itemlist.map(({title, path}) => `- [${title}](.${path.replace('blog', '')})`).join('\n')
+const makeMarkdown = (isMain: boolean) => `# ${isMain? '[Blog](./blog/README.md)': 'Blog'}\n\n`
+  + itemlist.map(({title, path}) => `- [${title}](${isMain? 'path': '.' + path.replace('blog', '')})`).join('\n')
   + '\n';
 
-await Deno.writeFile('./blog/README.md', encoder.encode( blogReadme));
 
-const mainReadme = '# [Blog](./blog/README.md)\n\n' 
-  + itemlist.map(({title, path}) => `- [${title}](${path})`).join('\n')
-  + '\n';
+await Deno.writeFile('./blog/README.md', encoder.encode(makeMarkdown(false)));
 
-await Deno.writeFile('./README.md', encoder.encode(mainReadme));
+await Deno.writeFile('./README.md', encoder.encode(makeMarkdown(true)));
 
