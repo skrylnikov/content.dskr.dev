@@ -30,7 +30,7 @@ for await(const {path} of walk('./blog', { includeDirs: false })){
 
 
 const blogReadme = '# Blog\n\n' 
-  + itemlist.map(({title, path}) => `- [${title}](.${path.replace('blog', '')})`).join('\n')
+  + itemlist.map(({title, path}) => `- [${title}](${path.replace('blog', '')})`).join('\n')
   + '\n';
 
 await Deno.writeFile('./blog/README.md', encoder.encode( blogReadme));
