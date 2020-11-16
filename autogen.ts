@@ -10,9 +10,9 @@ type Item = {
 
 const itemlist: Item[] = [];
 
-for await(const {path} of walk('./blog', { includeDirs: false })){
+for await(const {path, name} of walk('./blog', { includeDirs: false })){
   const parsedPath = path.split('/');
-  if(parsedPath.length !== 3){
+  if(parsedPath.length !== 3 || name !== 'README.md'){
     continue;
   }
   
