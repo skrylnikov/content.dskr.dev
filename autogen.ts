@@ -38,7 +38,7 @@ itemlist.sort((a, b)=>{
 });
 
 const makeMarkdown = (isMain: boolean) => `# ${isMain? '[Blog](./blog/README.md)': 'Blog'}\n\n`
-  + itemlist.map(({title, path}) => `- [${title}](${isMain? 'path': '.' + path.replace('blog', '')})`).join('\n')
+  + itemlist.map(({title, path}) => `- [${title}](${isMain? path: '.' + path.replace('blog', '')})`).join('\n')
   + '\n';
 
 
