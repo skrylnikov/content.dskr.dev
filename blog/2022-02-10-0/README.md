@@ -5,7 +5,7 @@ url: ts-nominal-type
 publishDate: 2022-02-10
 ---
 
-# TypeScript - brand/opaque тип
+# TypeScript - номинальная типизация примитивных типов
 
 ## Координаты
 
