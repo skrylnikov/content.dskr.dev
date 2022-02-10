@@ -1,6 +1,6 @@
 ---
 title: TypeScript - номинальная типизация примитивных типов
-description: Как в typescript типизовать Lat/Lng, Rub/Usd/Eur и друге похожие друг на друга типов данных 
+description: Как в typescript типизовать Lat/Lng, Rub/Usd/Eur и друге похожие друг на друга типы данных 
 url: ts-nominal-type
 publishDate: 2022-02-10
 ---
